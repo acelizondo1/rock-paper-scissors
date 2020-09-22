@@ -8,7 +8,7 @@
 <body>
     <script>
         //stores value of score needed to break while loop
-        const winningScore = 2;
+        const winningScore = 5;
         //storing values safe to use in computerPlay()
         const rock = "ROCK";
         const paper = "PAPER";
@@ -63,7 +63,7 @@
         /*Compares playerSelection and computerSelection  to evaluate results. 
             Sends back a string with the result and increases winner score.
         */
-        let playRound = (playerSelection, computerSelection) => {
+        let game = (playerSelection, computerSelection) => {
             if(playerSelection === computerSelection){
                 return `It's a tie!`;
             } else{
