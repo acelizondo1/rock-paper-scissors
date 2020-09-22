@@ -58,14 +58,47 @@
 
         };
 
-        /*
-        
+        /*Compares playerSelection and computerSelection  to evaluate results. 
+            Sends back a string with the result and increases winner score.
         */
         let playRound = (playerSelection, computerSelection) => {
             if(playerSelection === computerSelection){
-                console.log(`It's a tie!
-                Player Score: ${playerScore} | Computer Score: ${computerScore} 
-                `);
+                return `It's a tie!
+                Player Score: ${playerScore} | Computer Score: ${computerScore}`;
+            } else{
+                //
+                switch(true){
+                    case playerSelection === rock:
+                        if(computerSelection === paper){
+                            computerScore++;
+                            return `Computer Wins`;
+                        } else{
+                            //computer selection is scissors
+                            playerScore++;
+                            return `Player Wins`;
+                        }
+                        break;
+                    case playerSelection === paper:
+                        if(computerSelection === rock){
+                                playerScore++;
+                                return `Player Wins`;
+                            } else{
+                                //computer selection is scissors
+                                computerScore++;
+                                return `Computer Wins`;
+                            }
+                            break;
+                    case playerSelection === scissors:
+                        if(computerSelection === paper){
+                                playerScore++;
+                                return `Player Wins`;
+                            } else{
+                                //computer selection is rock
+                                computerScore++;
+                                return `Computer Wins`;
+                            }
+                            break;
+                }
             }
 
         };
