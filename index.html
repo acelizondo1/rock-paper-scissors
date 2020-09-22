@@ -109,8 +109,11 @@
 
             result = playRound(playerSelection, computerSelection);
 
-            console.log(`${result} 
-            Your Score: ${playerScore} | Computer Score: ${computerScore}`);
+            if(result){
+                console.log(`${result} 
+                Your Score: ${playerScore} | Computer Score: ${computerScore}`);
+           } 
+            
         }
 
         if(playerScore > computerScore){
