@@ -17,7 +17,7 @@
         let playerScore = 0;
         let computerScore = 0;
         //declaring result variable as to not do it in the while loop
-        let playerSelection = "Rock";
+        let playerSelection;
         let computerSelection;
         let result;
         
@@ -104,7 +104,7 @@
         };
         
         while(playerScore < winningScore && computerScore < winningScore){
-            playerSelection = parsePlayerChoice(playerSelection);
+            playerSelection = parsePlayerChoice(prompt("What is your choice?"));
             computerSelection = computerPlay();
 
             result = playRound(playerSelection, computerSelection);
