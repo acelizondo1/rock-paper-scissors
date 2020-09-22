@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //stores value of score needed to break while loop
+        const winningScore = 2;
+        //storing values safe to use in computerPlay()
+        const rock = "ROCK";
+        const paper = "PAPER";
+        const scissors = "SCISSORS";   
+        //variables to store current scores of each player, both start with 0
+        let playerScore = 0;
+        let computerScore = 0;
+        //declaring result variable as to not do it in the while loop
+        let result;
+        
+        /*Function to return a whole integer between args min and max
+            Used to choose computer's choice
+        */
+        let randomInt = (min, max) => {
+            min = Math.ceil(min); 
+            max = Math.floor(max); 
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        /*Function to return random computer choice
+            Runs randomInt to get a value between 1 and 3 that is then associated with a choice
+        */
+        let computerPlay = () => {
+            let int = randomInt(1,3);
+
+            switch(true){
+                case int == 1:
+                    return rock;
+                case int == 2:
+                    return paper;
+                case int == 3:
+                    return scissors;
+            }
+        };
+
+        /*Function to convert playerchoice to all caps and check if it is a valid choice*/
+        let parsePlayerChoice = (playerChoice) => {
+            playerChoice = playerChoice.toUpperCase();
+
+            if(playerChoice != rock && playerChoice != paper && playerChoice != scissors){
+                console.log("Please enter in a choice of ROCK, PAPER, or SCISSORS");
+                return null;
+            }
+            else{
+                return playerChoice;
+            }
+
+        };
+
+        /*
+        
+        */
+        let playRound = (playerSelection, computerSelection) => {
+            if(playerSelection === computerSelection){
+                console.log(`It's a tie!
+                Player Score: ${playerScore} | Computer Score: ${computerScore} 
+                `);
+            }
+
+        };
+
+    </script>
+</body>
+</html>
