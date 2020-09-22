@@ -17,6 +17,8 @@
         let playerScore = 0;
         let computerScore = 0;
         //declaring result variable as to not do it in the while loop
+        let playerSelection = "Rock";
+        let computerSelection;
         let result;
         
         /*Function to return a whole integer between args min and max
@@ -63,45 +65,59 @@
         */
         let playRound = (playerSelection, computerSelection) => {
             if(playerSelection === computerSelection){
-                return `It's a tie!
-                Player Score: ${playerScore} | Computer Score: ${computerScore}`;
+                return `It's a tie!`;
             } else{
                 //
                 switch(true){
                     case playerSelection === rock:
                         if(computerSelection === paper){
                             computerScore++;
-                            return `Computer Wins`;
+                            return `Computer Wins!`;
                         } else{
                             //computer selection is scissors
                             playerScore++;
-                            return `Player Wins`;
+                            return `Player Wins!`;
                         }
                         break;
                     case playerSelection === paper:
                         if(computerSelection === rock){
                                 playerScore++;
-                                return `Player Wins`;
+                                return `Player Wins!`;
                             } else{
                                 //computer selection is scissors
                                 computerScore++;
-                                return `Computer Wins`;
+                                return `Computer Wins!`;
                             }
                             break;
                     case playerSelection === scissors:
                         if(computerSelection === paper){
                                 playerScore++;
-                                return `Player Wins`;
+                                return `Player Wins!`;
                             } else{
                                 //computer selection is rock
                                 computerScore++;
-                                return `Computer Wins`;
+                                return `Computer Wins!`;
                             }
                             break;
                 }
             }
-
         };
+        
+        while(playerScore < winningScore && computerScore < winningScore){
+            playerSelection = parsePlayerChoice(playerSelection);
+            computerSelection = computerPlay();
+
+            result = playRound(playerSelection, computerSelection);
+
+            console.log(`${result} 
+            Your Score: ${playerScore} | Computer Score: ${computerScore}`);
+        }
+
+        if(playerScore > computerScore){
+            console.log("You won the match!");
+        }else{
+            console.log("The computer won the match!");
+        }
 
     </script>
 </body>
