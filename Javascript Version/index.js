@@ -14,11 +14,12 @@ let computerSelection;
 let result;
 //constants to store important DOM elements
 const playerScoreElement = document.querySelector('#currentPlayerScore');
-const computerScoreElement = document.querySelector('currentComputerScore');
+const computerScoreElement = document.querySelector('#currentComputerScore');
 const roundWinnerElement = document.querySelector('#roundWinner');
-const playerSelectionElement = document.querySelection('#playerSelection');
-const computerSelectionElement = document.querySelection('#compterSelection');
-const winnerElement = document.querySelection('#winner');
+const playerSelectionElement = document.querySelector('#playerSelection');
+const computerSelectionElement = document.querySelector('#computerSelection');
+const winnerElement = document.querySelector('#winner');
+const buttons = document.querySelectorAll('button');
 
 /*Function to return a whole integer between args min and max
     Used to choose computer's choice
@@ -66,7 +67,7 @@ let game = (playerSelection, computerSelection) => {
     if(playerSelection === computerSelection){
         return `It's a tie!`;
     } else{
-        //
+        
         switch(true){
             case playerSelection === rock:
                 if(computerSelection === paper){
@@ -102,34 +103,64 @@ let game = (playerSelection, computerSelection) => {
     }
 };
 
-let updateValues = (playerSelection, computerSelection, finalWinner) => {
+/*Updates DOM elements with current values
+*/
+let updateValues = (finalWinner = null) => {
     playerScoreElement.textContent = playerScore;
     computerScoreElement.textContent = computerScore;
     roundWinnerElement.textContent = result;
     playerSelectionElement.textContent = playerSelection;
-    computerScoreElement.textContent = computerSelection;
+    computerSelectionElement.textContent = computerSelection;
     if(finalWinner){
         winnerElement.textContent = finalWinner;
     }
 };
 
+/*Runs current scores against winning score, will run updateValues with winner string.
+*returns true if either score is equal or larger than winningScore, else returns false
+*/
+let checkEndOfGame = () => {
+    if(playerScore >= winningScore || computerScore >= winningScore){
+        if(playerScore > computerScore){
+            updateValues("You won the match!");
+        }else{
+            updateValues("The computer won the match!");
+        }
+        buttons.forEach((button) => {
+            button.setAttribute('disabled', '');
+        });
+        return true;
+    }else{
+        return false;
+    }
+};
+
+/*Creates click event listeners on buttons that will call game function when clicked
+*/
+let createEventListener = () => {
+    buttons.forEach((button) => {
+        button.addEventListener('click', (event) =>{
+            playerSelection = parsePlayerChoice(event.path[0].id);
+            computerSelection = computerPlay();
+            result = game(playerSelection, computerSelection);
+            if(!checkEndOfGame()){
+                updateValues();
+            }
+        });
+    });
+};
+
+
+//first update of values
+document.querySelector('#winningTotal').textContent = winningScore;
+updateValues();
+createEventListener();
+
 /*Loop that runs while player or computer score is less than winningScore
 */
-while(playerScore < winningScore && computerScore < winningScore){
-    playerSelection = "ROCK";//parsePlayerChoice(prompt("What is your choice?"));
-    computerSelection = computerPlay();
-
-    result = game(playerSelection, computerSelection);
-
-    if(result){
-        console.log(`${result} 
-        Your Score: ${playerScore} | Computer Score: ${computerScore}`);
-   } 
+// while(playerScore < winningScore && computerScore < winningScore){   
     
-}
+// }
 
-if(playerScore > computerScore){
-    console.log("You won the match!");
-}else{
-    console.log("The computer won the match!");
-}
+
+

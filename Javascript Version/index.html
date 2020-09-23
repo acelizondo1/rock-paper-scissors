@@ -14,14 +14,14 @@
 
     <section id="game">
         <div id="scores">
-            <h2>We Don't Have A Winner Yet</h2>
+            <h2 id="winner">We Don't Have A Winner Yet</h2>
             <div id="playerScore" class="score">
                 <h2>Your Score:</h2>
                 <span id="currentPlayerScore"></span>
             </div>
             <div id="computerScore" class="score">
                 <h2>Computer Score:</h2>
-                <span id="currentComputerScore"></span>
+                <span id="currentComputerScore">0</span>
             </div>
         </div>
         <div id="playerOptions">
@@ -36,11 +36,11 @@
     <section id="lastResult">
         <h2><strong>Round Results</strong></h2>
         <h4 id="roundWinner"></h4>
-        <div id="playerSelectionDiv">
+        <div id="playerSelectionDiv" class="choice">
             <h4>Your Choice: </h4>
             <span id="playerSelection"></span>
         </div>
-        <div id="computerSelectionDiv">
+        <div id="computerSelectionDiv" class="choice">
             <h4>Computer's Choice: </h4>
             <span id="computerSelection"></span>
         </div>
