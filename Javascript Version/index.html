@@ -4,8 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel = "stylesheet" type = "text/css" href = "index.css" />
 </head>
 <body>
+    <section id="intro">
+        <h1>Let's Play Rock, Paper Scissors!</h1>
+        <p>Best Of <span id="winningTotal"></span></p>
+    </section>
+
+    <section id="game">
+        <div id="scores">
+            <div id="playerScore" class="score">
+                <h2>Your Score:</h2>
+                <span id="currentPlayerScore"></span>
+            </div>
+            <div id="computerScore" class="score">
+                <h2>Computer Score:</h2>
+                <span id="currentComputerScore"></span>
+            </div>
+        </div>
+        <div id="playerOptions">
+            <h2>What is your choice?</h2>
+            <div id="choices">
+                <button id="rock">ROCK</button>
+                <button id="paper">PAPER</button>
+                <button id="scissors">SCISSORS</button>
+            </div>
+        </div>
+    </section>
+    <section id="lastResult">
+        <h2><strong>Round Results</strong></h2>
+        <h4 id="roundWinner"></h4>
+        <div id="playerSelectionDiv">
+            <h4>Your Choice: </h4>
+            <span id="playerSelection"></span>
+        </div>
+        <div id="computerSelectionDiv">
+            <h4>Computer's Choice: </h4>
+            <span id="computerSelection"></span>
+        </div>
+    </section>
+    
     <script>
         //stores value of score needed to break while loop
         const winningScore = 5;
@@ -103,10 +142,10 @@
             }
         };
         
-        /*
+        /*Loop that runs while player or computer score is less than winningScore
         */
         while(playerScore < winningScore && computerScore < winningScore){
-            playerSelection = parsePlayerChoice(prompt("What is your choice?"));
+            playerSelection = "ROCK";//parsePlayerChoice(prompt("What is your choice?"));
             computerSelection = computerPlay();
 
             result = playRound(playerSelection, computerSelection);
