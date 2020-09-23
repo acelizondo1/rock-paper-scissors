@@ -4,126 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel = "stylesheet" type = "text/css" href = "index.css" />
 </head>
 <body>
-    <script>
-        //stores value of score needed to break while loop
-        const winningScore = 5;
-        //storing values safe to use in computerPlay()
-        const rock = "ROCK";
-        const paper = "PAPER";
-        const scissors = "SCISSORS";   
-        //variables to store current scores of each player, both start with 0
-        let playerScore = 0;
-        let computerScore = 0;
-        //declaring result variable as to not do it in the while loop
-        let playerSelection;
-        let computerSelection;
-        let result;
-        
-        /*Function to return a whole integer between args min and max
-            Used to choose computer's choice
-        */
-        let randomInt = (min, max) => {
-            min = Math.ceil(min); 
-            max = Math.floor(max); 
-            return Math.floor(Math.random() * (max - min + 1)) + min;
-        }
+    <section id="intro">
+        <h1>Let's Play Rock, Paper Scissors!</h1>
+        <p>First to <span id="winningTotal"></span> Rounds Wins!</p>
+    </section>
 
-        /*Function to return random computer choice
-            Runs randomInt to get a value between 1 and 3 that is then associated with a choice
-        */
-        let computerPlay = () => {
-            let int = randomInt(1,3);
-
-            switch(true){
-                case int == 1:
-                    return rock;
-                case int == 2:
-                    return paper;
-                case int == 3:
-                    return scissors;
-            }
-        };
-
-        /*Function to convert playerchoice to all caps and check if it is a valid choice*/
-        let parsePlayerChoice = (playerChoice) => {
-            playerChoice = playerChoice.toUpperCase();
-
-            if(playerChoice != rock && playerChoice != paper && playerChoice != scissors){
-                console.log("Please enter in a choice of ROCK, PAPER, or SCISSORS");
-                return null;
-            }
-            else{
-                return playerChoice;
-            }
-
-        };
-
-        /*Compares playerSelection and computerSelection  to evaluate results. 
-            Sends back a string with the result and increases winner score.
-        */
-        let game = (playerSelection, computerSelection) => {
-            if(playerSelection === computerSelection){
-                return `It's a tie!`;
-            } else{
-                //
-                switch(true){
-                    case playerSelection === rock:
-                        if(computerSelection === paper){
-                            computerScore++;
-                            return `Computer Wins!`;
-                        } else{
-                            //computer selection is scissors
-                            playerScore++;
-                            return `Player Wins!`;
-                        }
-                        break;
-                    case playerSelection === paper:
-                        if(computerSelection === rock){
-                                playerScore++;
-                                return `Player Wins!`;
-                            } else{
-                                //computer selection is scissors
-                                computerScore++;
-                                return `Computer Wins!`;
-                            }
-                            break;
-                    case playerSelection === scissors:
-                        if(computerSelection === paper){
-                                playerScore++;
-                                return `Player Wins!`;
-                            } else{
-                                //computer selection is rock
-                                computerScore++;
-                                return `Computer Wins!`;
-                            }
-                            break;
-                }
-            }
-        };
-        
-        /*
-        */
-        while(playerScore < winningScore && computerScore < winningScore){
-            playerSelection = parsePlayerChoice(prompt("What is your choice?"));
-            computerSelection = computerPlay();
-
-            result = playRound(playerSelection, computerSelection);
-
-            if(result){
-                console.log(`${result} 
-                Your Score: ${playerScore} | Computer Score: ${computerScore}`);
-           } 
-            
-        }
-
-        if(playerScore > computerScore){
-            console.log("You won the match!");
-        }else{
-            console.log("The computer won the match!");
-        }
-
-    </script>
+    <section id="scores">
+        <h2 id="winner">We Don't Have A Winner Yet</h2>
+        <div id="playerScore" class="score">
+            <h2>Your Score:</h2>
+            <span id="currentPlayerScore"></span>
+        </div>
+        <div id="computerScore" class="score">
+            <h2>Computer Score:</h2>
+            <span id="currentComputerScore">0</span>
+        </div>
+    </section>
+    <section id="playerOptions">
+        <h2>What is your choice?</h2>
+        <div id="choices">
+            <button id="rock" class="gameChoice">ROCK</button>
+            <button id="paper" class="gameChoice">PAPER</button>
+            <button id="scissors" class="gameChoice">SCISSORS</button>
+        </div>
+    </section>
+    <section id="lastResult">
+        <h2><strong>Round Results</strong></h2>
+        <h4 id="roundWinner"></h4>
+        <div id="playerSelectionDiv" class="choice">
+            <h4>Your Choice: </h4>
+            <span id="playerSelection"></span>
+        </div>
+        <div id="computerSelectionDiv" class="choice">
+            <h4>Computer's Choice: </h4>
+            <span id="computerSelection"></span>
+        </div>
+    </section>
+    
+    <script src="index.js"></script>
 </body>
 </html>
