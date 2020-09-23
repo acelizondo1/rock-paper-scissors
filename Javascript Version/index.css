@@ -4,7 +4,7 @@ body {
 }
 
 section{
-    margin: 5rem;
+    margin: 1rem 3rem 3rem 3rem;
 }
 
 h1{
@@ -22,8 +22,8 @@ button{
     margin: 3rem;
 }
 
-#lastResult{
-    height: 13rem;
+#lastResult, #scores{
+    height: 100%;
     width: 50%;
     padding: 0.5rem;
     margin: auto;
@@ -37,4 +37,10 @@ button{
 .choice{
     display: inline-block;
     margin: 0 2rem 2rem 2rem;
+}
+
+#newGame{
+    display: block;
+    height: 3rem;
+    margin: 3rem auto 0 auto;
 }

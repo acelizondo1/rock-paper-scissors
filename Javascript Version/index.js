@@ -19,7 +19,20 @@ const roundWinnerElement = document.querySelector('#roundWinner');
 const playerSelectionElement = document.querySelector('#playerSelection');
 const computerSelectionElement = document.querySelector('#computerSelection');
 const winnerElement = document.querySelector('#winner');
-const buttons = document.querySelectorAll('button');
+const buttons = document.querySelectorAll('button.gameChoice');
+
+/*Creates node of new game button to push
+*/
+let createNewGameButton = () => {
+    const newGameButton = document.createElement('button');
+    newGameButton.textContent = "RESET GAME";
+    newGameButton.setAttribute('id', 'newGame');
+    newGameButton.addEventListener('click', ()=>{
+        location.reload();
+    });
+
+    return newGameButton;
+};
 
 /*Function to return a whole integer between args min and max
     Used to choose computer's choice
@@ -113,6 +126,8 @@ let updateValues = (finalWinner = null) => {
     computerSelectionElement.textContent = computerSelection;
     if(finalWinner){
         winnerElement.textContent = finalWinner;
+        winnerElement.setAttribute('style', 'background-color: yellow');
+        document.querySelector('#scores').insertBefore(createNewGameButton(), document.querySelector('#playerScore'));
     }
 };
 
@@ -155,12 +170,3 @@ let createEventListener = () => {
 document.querySelector('#winningTotal').textContent = winningScore;
 updateValues();
 createEventListener();
-
-/*Loop that runs while player or computer score is less than winningScore
-*/
-// while(playerScore < winningScore && computerScore < winningScore){   
-    
-// }
-
-
-
